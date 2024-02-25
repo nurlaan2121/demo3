@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отображение постов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .post {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<nav style="float: left; margin-right: 20px;">
+    <a th:href="@{/ret}" style="text-decoration: none; display: block; margin-bottom: 10px;">Home</a>
+    <a th:href="@{search}" class="nav-link"
+       style="text-decoration: none; display: block; margin-bottom: 10px;">Search</a>
+    <a th:href="@{searchUser}" class="nav-link" style="text-decoration: none; display: block; margin-bottom: 10px;">Search
+        User</a>
+    <a href="#" style="text-decoration: none; display: block; margin-bottom: 10px;">Messages</a>
+    <a th:href="@{createPost/${idCurrentUser}}" class="nav-link"
+       style="text-decoration: none; display: block; margin-bottom: 10px;">Create post</a>
+    <a th:href="@{/myProfile}" class="nav-link" style="text-decoration: none; display: block; margin-bottom: 10px;">My
+        profile</a>
+</nav>
+<div class="post-container">
+    <div th:each="post : ${homePosts}" class="post">
+        <h2 th:text="${post.title}"></h2>
+        <p th:text="${post.description}"></p>
+        <p><strong>Owner:</strong> <span th:text="${post.ownerUserName}"></span></p>
+        <p><strong>Created Ad:</strong> <span th:text="${post.createdAd}"></span></p>
+        <p><strong>Likes:</strong> <span th:text="${post.likes}"></span></p>
+        <p><strong>Comments:</strong> <span th:text="${post.comments}"></span></p>
+        <img th:src="${post.imageUrl}" alt="Post Image">
+    </div>
+</div>
+
+</body>
+</html>

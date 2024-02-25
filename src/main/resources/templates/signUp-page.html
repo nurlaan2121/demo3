@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .register-container {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <h2>Регистрация пользователя</h2>
+    <form action="#" th:action = "@{/saveUser}" th:object = "${newUser}" method="post">
+        <label for="username">Имя пользователя:</label>
+        <input th:field="*{userName}" id="username" name="username" required>
+
+        <label for="password">Пароль (минимум 8 символов):</label>
+        <input th:field="*{password}" id="password" name="password" minlength="8" required>
+
+        <label for="phone">Номер телефона (+996xxxxxxxxx):</label>
+        <input type="tel" th:field="*{phoneNumber}"  id="phone" name="phone" pattern="\+996[0-9]{9}" required>
+        <small>Пример: +996777289688</small>
+
+        <label for="email">Email (должен заканчиваться на @gmail.com):</label>
+        <input type="email" th:field="*{email}"  id="email" name="email" pattern=".+@gmail\.com$" required>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+
+</body>
+</html>

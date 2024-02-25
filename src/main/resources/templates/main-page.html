@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход на сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .register-link {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Вход на сайт</h2>
+    <form action="#" th:action="@{/signIn}" th:object="${newUser}" method="get">
+        <label for="userName">Login:</label>
+        <input type="text" th:field="*{userName}" id="userName" required="required"/>
+
+        <label for="password">Password:</label>
+        <input type="password" th:field="*{password}" id="password" required="required"/>
+
+        <button type="submit">Login</button>
+
+        <!-- Кнопка для входа через Google -->
+<!--        <div class="google-signin-button" onclick="signInWithGoogle()">Sign in with Google</div>-->
+    </form>
+    <p>Еще нет аккаунта? <a th:href="@{signUp}" class="register-link">Зарегистрируйтесь здесь</a></p>
+</div>
+
+</body>
+</html>
