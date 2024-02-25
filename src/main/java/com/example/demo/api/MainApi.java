@@ -5,11 +5,12 @@ import com.example.demo.entities.User;
 import com.example.demo.service.PostInterface;
 import com.example.demo.service.UserInterface;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Controller
 @RequestMapping
 @RequiredArgsConstructor
 public class MainApi {
@@ -26,7 +27,6 @@ public class MainApi {
         deleteUser.addAttribute("newUser", new User());
         return "main-page";
     }
-
     @GetMapping("/signIn")
     public String signIn(@ModelAttribute User user, Model currentUserId,Model homePosts) {
         Long idCurrentUser = userInterface.signIn(user);
@@ -38,7 +38,13 @@ public class MainApi {
         } else {
             return "error-page";
         }
-
+    }
+    @GetMapping("/home/{idCurrentUser}")
+    public String home(@PathVariable("idCurrentUser") Long idCurrentUser, Model currentUserId,Model homePosts){
+        List<PostDto> posts = postInterface.getHomePosts(idCurrentUser);
+        homePosts.addAttribute("homePosts",posts);
+        currentUserId.addAttribute("idCurrentUser", idCurrentUser);
+        return "home-page";
     }
 
     @GetMapping("/signUp")

@@ -31,16 +31,17 @@
     </style>
 </head>
 <body>
-<nav style="float: left; margin-right: 20px;">
-    <a th:href="@{/ret}" style="text-decoration: none; display: block; margin-bottom: 10px;">Home</a>
+<nav style="float: left; margin-right: 80px;">
+    <a th:href="@{/home/{idCurrentUser}(idCurrentUser=${idCurrentUser})}" style="text-decoration: none; display: block; margin-bottom: 90px;">Home</a>
     <a th:href="@{search}" class="nav-link"
        style="text-decoration: none; display: block; margin-bottom: 10px;">Search</a>
-    <a th:href="@{searchUser}" class="nav-link" style="text-decoration: none; display: block; margin-bottom: 10px;">Search
+    <a th:href="@{searchUser}" class="nav-link" style="text-decoration: none; display: block; margin-bottom: 90px;">Search
         User</a>
     <a href="#" style="text-decoration: none; display: block; margin-bottom: 10px;">Messages</a>
-    <a th:href="@{createPost/${idCurrentUser}}" class="nav-link"
-       style="text-decoration: none; display: block; margin-bottom: 10px;">Create post</a>
-    <a th:href="@{/myProfile}" class="nav-link" style="text-decoration: none; display: block; margin-bottom: 10px;">My
+    <a th:href="@{/createPost/{idCurrentUser}(idCurrentUser=${idCurrentUser})}" class="nav-link"
+       style="text-decoration: none; display: block; margin-bottom: 90px;">Create post</a>
+
+    <a th:href="@{/myProfile}" class="nav-link" style="text-decoration: none; display: block; margin-bottom: 90px;">My
         profile</a>
 </nav>
 <div class="post-container">
