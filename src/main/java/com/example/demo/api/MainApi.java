@@ -1,7 +1,12 @@
 package com.example.demo.api;
 
 import com.example.demo.dtoes.PostDto;
+import com.example.demo.dtoes.UserDto;
+import com.example.demo.entities.Follower;
+import com.example.demo.entities.Post;
 import com.example.demo.entities.User;
+import com.example.demo.repo.FollowerRepo;
+import com.example.demo.service.FolLowerInterface;
 import com.example.demo.service.PostInterface;
 import com.example.demo.service.UserInterface;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +21,7 @@ import java.util.List;
 public class MainApi {
     private final UserInterface userInterface;
     private final PostInterface postInterface;
+    private final FollowerRepo folLowerInterface;
 
     @GetMapping()
     public String mainPage(Model deleteUser) {
@@ -57,5 +63,16 @@ public class MainApi {
     private String saveUser(@ModelAttribute User user) {
         userInterface.saveUser(user);
         return "redirect:/";
+    }
+    @RequestMapping("/myProfile/{currentUserId}")
+    public String myProfile(@PathVariable Long currentUserId,Model follower,Model myAllPosts,Model myInfo,Model IAm){
+        UserDto userDTO = userInterface.getMyInfo(currentUserId);
+        IAm.addAttribute("idCurrentUser", currentUserId);
+        myInfo.addAttribute("myInfo",userDTO);
+        Follower follower1 = folLowerInterface.findd(currentUserId);
+        follower.addAttribute("follower",follower1);
+        List<Post> allMyPosts = postInterface.getAllMyPosts(currentUserId);
+        myAllPosts.addAttribute("myAllPosts",allMyPosts);
+        return "myProfile-page";
     }
 }

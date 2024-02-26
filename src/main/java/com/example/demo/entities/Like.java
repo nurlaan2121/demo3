@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Like extends GeneratedId {
     @Column(name = "is_like")
     private Boolean isLike;
-    @OneToOne
+    @ManyToOne
     private User user;
     @ManyToOne
     private Post post;
