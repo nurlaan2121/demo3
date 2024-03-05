@@ -51,7 +51,6 @@
             cursor: pointer;
             font-size: 16px;
         }
-
         button {
             background-color: #000cec;
             color: white;
@@ -95,7 +94,6 @@
             margin-top: 10px;
             display: inline-block;
         }
-
         .view-btn {
             background-color: #3498db;
             color: #af4c63;
@@ -111,37 +109,27 @@
     </style>
 </head>
 <body>
-<h1>User Search</h1>
 <table>
     <thead>
     <tr>
         <th>User Name</th>
-        <th>Comment</th>
-        <th>Created ad</th>
-        <th>Likes</th>
+        <th>Subscribers</th>
+        <th>Subscriptions</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="comment : ${infoPost}">
-        <td th:text="${comment.userName}"></td>
-        <td th:text="${comment.comment}"></td>
-        <td th:text="${comment.createdAd}"></td>
-        <td th:text="${comment.likesCount}"></td>
+    <tr th:each="user : ${allSubscribers}">
+        <td th:text="${user.userName}"></td>
+        <td th:text="${user.getFollower().getSubscribers().size()}"></td>
+        <td th:text="${user.getFollower().getSubscriptions().size()}"></td>
         <td>
-            <a th:href="@{'/subscribe/' + ${comment.userId} + '/' + ${currentUserId}}" class="subscribe-btn"
-               th:text="'Subscribe to ' + ${comment.userName}">
+            <a th:href="@{'/user/subscribe/' + ${user.id}}" class="subscribe-btn"
+               th:text="'Subscribe to ' + ${user.userName}">
             </a>
-            <a th:href="@{'/profile/' + ${comment.userId}}" class="view-btn"
-               th:text="'View profile:' + ${comment.userName}">
+            <a th:href="@{'/user/profile/' + ${user.id}}" class="view-btn"
+               th:text="'View profile:' + ${user.userName}">
             </a>
-            <form th:action="@{'/user/likeComment/' + ${comment.id}+ '/'+ ${currentUserId}}" method="post">
-                <a
-                        th:text="'View profile:' + ${comment.id}">
-                </a>
-                <button type="submit">Like</button>
-            </form>
-
         </td>
     </tr>
     </tbody>

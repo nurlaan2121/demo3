@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "posts")
 @Getter
 @Setter
-@SequenceGenerator(name = "id_gen6", allocationSize = 1, sequenceName = "post_id_seq")
+@SequenceGenerator(name = "id_gen", allocationSize = 1, sequenceName = "post_id_seq")
 public class Post extends GeneratedId {
     private String title;
     private String description;

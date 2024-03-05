@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.atn.SemanticContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,6 +88,61 @@ public class UserImpl implements UserInterface {
         userDto.setSubscribers((long) user.getFollower().getSubscribers().size());
         userDto.setSubscriptions((long) user.getFollower().getSubscriptions().size());
         return userDto;
+    }
+
+    @Override
+    public User getCurrentUser(Long currentUserId) {
+        return userRepo.findById(currentUserId).get();
+    }
+
+    @Override
+    @Transactional
+    public void updateUser(User user) {
+        User user1 = userRepo.findById(user.getId()).get();
+        UserInfo userInfo = user1.getUserInfo();
+        userInfo.setFullName(user.getUserInfo().getFullName());
+        userInfo.setBiography(user.getUserInfo().getBiography());
+        userInfo.setGender(user.getUserInfo().getGender());
+        userInfo.setImageProfile(user.getUserInfo().getImageProfile());
+        user1.setUserName(user.getUserName());
+        user1.setImage(user.getImage());
+        user1.setEmail(user.getEmail());
+        user1.setPassword(user.getPassword());
+        user1.setPhoneNumber(user.getPhoneNumber());
+    }
+
+    @Override
+    public List<User> findUserGetAllSubscribers(Long userId) {
+        List<User> users = new ArrayList<>();
+        Follower follower = userRepo.getFollower(userId);
+        for (int i = 0; i < follower.getSubscribers().size(); i++) {
+            User userId1 = userRepo.getUser(follower.getSubscribers().get(i));
+            users.add(userId1);
+        }
+        return users;
+    }
+
+    @Override
+    public List<User> findUserGetAllSubscriptions(Long userId) {
+        List<User> users = new ArrayList<>();
+        Follower follower = userRepo.getFollower(userId);
+        for (int i = 0; i < follower.getSubscriptions().size(); i++) {
+            User userId1 = userRepo.getUser(follower.getSubscribers().get(i));
+            users.add(userId1);
+        }
+        return users;
+    }
+
+    @Override
+    public List<User> getMySubscription(Long currentUserId) {
+        List<User> users = new ArrayList<>();
+        Follower currentFollower = userRepo.getFollower(currentUserId);
+        List<Long> subscriptions = currentFollower.getSubscriptions();
+        for (int i = 0; i < subscriptions.size(); i++) {
+            User fori = userRepo.getUser(subscriptions.get(i));
+            users.add(fori);
+        }
+        return users;
     }
 
 

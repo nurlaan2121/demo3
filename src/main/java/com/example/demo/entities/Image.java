@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "images")
 @Getter
 @Setter
-@SequenceGenerator(name = "id_gen4", allocationSize = 1, sequenceName = "image_id_seq")
+@SequenceGenerator(name = "id_gen", allocationSize = 1, sequenceName = "image_id_seq")
 public class Image extends GeneratedId {
     @Column(name = "image_ulr", length = 1000)
     private String imageUrl;

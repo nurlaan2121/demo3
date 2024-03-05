@@ -27,4 +27,13 @@ public interface UserInterface {
 
     UserDto getMyInfo(Long id);
 
+    User getCurrentUser(Long currentUserId);
+
+    void updateUser(User user);
+
+    List<User> findUserGetAllSubscribers(Long userId);
+
+    List<User> findUserGetAllSubscriptions(Long userId);
+
+    List<User> getMySubscription(Long currentUserId);
 }

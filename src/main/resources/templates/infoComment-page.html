@@ -129,13 +129,13 @@
         <td th:text="${comment.createdAd}"></td>
         <td th:text="${comment.likesCount}"></td>
         <td>
-            <a th:href="@{'/subscribe/' + ${comment.userId} + '/' + ${currentUserId}}" class="subscribe-btn"
+            <a th:href="@{'/user/subscribe/' + ${comment.userId}}" class="subscribe-btn"
                th:text="'Subscribe to ' + ${comment.userName}">
             </a>
-            <a th:href="@{'/profile/' + ${comment.userId}}" class="view-btn"
+            <a th:href="@{'/user/profile/' + ${comment.userId}}" class="view-btn"
                th:text="'View profile:' + ${comment.userName}">
             </a>
-            <form th:action="@{'/user/likeComment/' + ${comment.id}+ '/'+ ${currentUserId}}" method="post">
+            <form th:action="@{'/user/likeComment/' + ${comment.id} + '/'+ ${currentUserId}}" method="post">
                 <a
                         th:text="'View profile:' + ${comment.id}">
                 </a>

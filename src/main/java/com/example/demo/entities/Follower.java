@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "followers")
 @Getter
 @Setter
-@SequenceGenerator(name = "id_gen2", allocationSize = 1, sequenceName = "follower_id_seq")
+@SequenceGenerator(name = "id_gen", allocationSize = 1, sequenceName = "follower_id_seq")
 public class Follower extends GeneratedId {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Long> subscribers = new ArrayList<>();

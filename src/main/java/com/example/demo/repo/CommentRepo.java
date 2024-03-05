@@ -11,4 +11,7 @@ import java.util.List;
 public interface CommentRepo extends JpaRepository<Comment, Long> {
     @Query("select new com.example.demo.dtoes.CommentDto(c.id,u.id,c.comment,c.user.userName,c.createdAd) from Comment c join User u on c.user.id = u.id  where c.post.id = :postId")
     List<CommentDto> infoAboutCurrentPost(Long postId);
+    @Query("select c from Comment c join User u on c.user.id = u.id where c.id =:commentId")
+    Comment getOneCom(Long commentId);
+
 }

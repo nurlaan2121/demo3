@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-@SequenceGenerator(name = "id_gen8", allocationSize = 1, sequenceName = "userInfo_id_seq")
+@SequenceGenerator(name = "id_gen", allocationSize = 1, sequenceName = "userInfo_id_seq")
 public class UserInfo extends GeneratedId {
     @Column(name = "full_name")
     private String fullName;

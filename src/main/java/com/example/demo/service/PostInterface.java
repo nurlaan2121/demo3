@@ -26,4 +26,12 @@ public interface PostInterface {
     List<CommentDto> infoAboutCurrentPost(Long postId);
 
     List<Post> getAllMyPosts(Long idCurrentUser);
+
+    void addLikeToComment(Long commentId,Long currentUserId);
+
+    void deletePost(Long id);
+
+    Post getPost(Long id);
+
+    void update(Post post);
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "comments")
 @Getter
 @Setter
-@SequenceGenerator(name = "id_gen1", allocationSize = 1, sequenceName = "comment_id_seq")
+@SequenceGenerator(name = "id_gen", allocationSize = 1, sequenceName = "comment_id_seq")
 public class Comment extends GeneratedId {
     private String comment;
     @Column(name = "created_ad")

@@ -103,4 +103,52 @@ public class PostImpl implements PostInterface {
     public List<Post> getAllMyPosts(Long idCurrentUser) {
         return postRepo.getMyPosts(idCurrentUser);
     }
+
+    @Override @Transactional
+    public void addLikeToComment(Long commentId,Long currentUserId) {
+        boolean isyeas = false;
+        Comment one = commentRepo.getOneCom(commentId);
+        for (int i = 0; i < one.getLikes().size(); i++) {
+            if (one.getLikes().get(i).getUser().getId().equals(currentUserId)) {
+                one.getLikes().remove(i);
+                isyeas = true;
+                break;
+            }
+        }
+        if (!isyeas) {
+            User user = userRepo.findById(currentUserId).get();
+            Like like = new Like();
+            like.setUser(user);
+            like.setIsLike(true);
+            likeRepo.save(like);
+            Comment currentComment = commentRepo.getOneCom(commentId);
+            currentComment.getLikes().add(like);
+        }
+    }
+
+    @Override
+    public void deletePost(Long id) {
+        Post post = postRepo.findById(id).get();
+        Long postId = post.getId();
+        postRepo.deleteCom(postId);
+        System.out.println("COMET");
+        postRepo.deleteLike(postId);
+        System.out.println("LIKE");
+        postRepo.deletePost(id);
+        System.out.println("POST");
+
+    }
+
+    @Override
+    public Post getPost(Long id) {
+        return postRepo.findById(id).get();
+    }
+
+    @Override
+    @Transactional
+    public void update(Post post) {
+        Post post1 = postRepo.findById(post.getId()).get();
+        post1.setDescription(post.getDescription());
+        post1.setTitle(post.getTitle());
+    }
 }

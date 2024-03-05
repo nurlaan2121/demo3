@@ -1,20 +1,14 @@
 package com.example.demo.api;
-
-import com.example.demo.dtoes.PostDto;
-import com.example.demo.dtoes.UserDto;
 import com.example.demo.entities.Post;
 import com.example.demo.entities.User;
-import com.example.demo.service.UserImpl;
 import com.example.demo.service.UserInterface;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 
 @Controller

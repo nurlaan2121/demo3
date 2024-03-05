@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "users")
 @Getter
 @Setter
-@SequenceGenerator(name = "id_gen7", allocationSize = 1, sequenceName = "user_id_seq")
+@SequenceGenerator(name = "id_gen", allocationSize = 1, sequenceName = "user_id_seq")
 public class User extends GeneratedId {
     @Column(unique = true, name = "user_name")
     private String userName;

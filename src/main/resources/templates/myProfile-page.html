@@ -222,7 +222,9 @@
     <a th:href="@{/searchUser/{idCurrentUser}(idCurrentUser=${idCurrentUser})}" class="nav-link">Search User</a>
     <a href="#">Messages</a>
     <a th:href="@{/createPost/{idCurrentUser}(idCurrentUser=${idCurrentUser})}" class="nav-link">Create post</a>
-    <a th:href="@{/myProfile}" class="nav-link">My profile </a></nav>
+    <a th:href="@{/myProfile/{idCurrentUser}(idCurrentUser=${idCurrentUser})}" class="nav-link">My profile</a>
+
+</nav>
 <section>
     <div class="profile-container">
         <h2>My Posts</h2>
@@ -233,8 +235,8 @@
                 <p th:text="${post.description}"></p>
             </div>
             <div class="post-actions">
-                <a th:href="@{'create/post/delete/' + ${post.id}}" class="btn btn-danger">DELETE</a>
-                <a th:href="@{'create/post/update/' + ${post.id}}" class="btn btn-primary">Edit</a>
+                <a th:href="@{'/create/post/delete/' + ${post.id}  + '/' + ${currentUserId}}" class="btn btn-danger">DELETE</a>
+                <a th:href="@{'/create/post/update/' + ${post.id} + '/' + ${currentUserId}}" class="btn btn-primary">Edit</a>
             </div>
         </div>
     </div>
@@ -245,7 +247,7 @@
 <div class="meniki">
     <h2>Additional Navigation</h2>
     <ul>
-        <a th:href="@{user/update/user}" class="nav-link">Update Profile</a>
+        <a th:href="@{'/user/update/user/' + ${idCurrentUser}}" class="nav-link">Update Profile</a>
         <a th:href="@{'/user/subscribers/' + ${idCurrentUser}}" class="nav-link">Subscribers</a>
         <a th:href="@{'/user/subscriptions/' + ${idCurrentUser}}" class="nav-link">Subscriptions</a>
     </ul>
